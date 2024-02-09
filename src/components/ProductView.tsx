@@ -54,7 +54,7 @@ export const ProductView = () => {
   };
 
   const newProduct = () => {
-    setSelectedItem(defaultProduct);
+    onSelectedItem(defaultProduct);
   };
 
   return (
