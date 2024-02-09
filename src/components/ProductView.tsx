@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Product, fetchProducts } from "../services/ProductService";
-import { Button, Col, Row, message } from "antd";
+import { Button, Col, Flex, Row, message } from "antd";
 import { ProductList } from "./ProductList";
 import { ProductDetails } from "./ProductDetails";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 const defaultProduct: Product = {
   id: 0,
@@ -67,14 +67,16 @@ export const ProductView = () => {
             onSelectedItem={onSelectedItem}
             onProductDeleted={onProductDeleted}
           />
-          <Button
-            type="primary"
-            icon={<PlusCircleOutlined />}
-            size="large"
-            onClick={() => newProduct()}
-          >
-            New Product
-          </Button>
+          <Flex justify="flex-start">
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              size="large"
+              onClick={() => newProduct()}
+            >
+              New Product
+            </Button>
+          </Flex>
         </Col>
         <Col span={4}></Col>
         <Col span={8}>
