@@ -4,7 +4,7 @@ export type Product = {
   id: number;
   name: string;
   price: number;
-  unit?: string;
+  unit: string;
 };
 
 type ProductResponse = {

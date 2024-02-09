@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { Product, fetchProducts } from "../services/ProductService";
-import { Col, Row, message } from "antd";
+import { Button, Col, Row, message } from "antd";
 import { ProductList } from "./ProductList";
 import { ProductDetails } from "./ProductDetails";
+import { PlusCircleOutlined } from "@ant-design/icons";
+
+const defaultProduct: Product = {
+  id: 0,
+  name: "",
+  unit: "",
+  price: 0.0,
+};
 
 export const ProductView = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedId, setSelectedId] = useState(2);
-
-  const selectedItem = products.find((p) => p.id === selectedId);
+  const [selectedItem, setSelectedItem] = useState<Product>(defaultProduct);
 
   useEffect(() => {
     (async () => {
@@ -18,11 +24,37 @@ export const ProductView = () => {
   }, []);
 
   const onSelectedItem = (item: Product) => {
-    setSelectedId(item.id);
+    setSelectedItem(item);
   };
 
   const onProductDeleted = (item: Product) => {
+    setProducts((products) => {
+      return products.filter((p) => p.id !== item.id);
+    });
     message.success(`Product was deleted sucess: ${item.name}`);
+  };
+
+  const onSaveProduct = (item: Product) => {
+    const isNew = selectedItem.id === 0;
+    if (isNew) {
+      const maxId = Math.max(...products.map((p) => p.id), 0);
+      item.id = maxId + 1;
+      setProducts((products) => [...products, item]);
+    } else {
+      setProducts((products) => {
+        return products.map((p) => {
+          if (p.id === item.id) {
+            return { ...item };
+          }
+          return p;
+        });
+      });
+    }
+    message.success(`Product saved success: ${item.name}`);
+  };
+
+  const newProduct = () => {
+    setSelectedItem(defaultProduct);
   };
 
   return (
@@ -35,11 +67,24 @@ export const ProductView = () => {
             onSelectedItem={onSelectedItem}
             onProductDeleted={onProductDeleted}
           />
+          <Button
+            type="primary"
+            icon={<PlusCircleOutlined />}
+            size="large"
+            onClick={() => newProduct()}
+          >
+            New Product
+          </Button>
         </Col>
         <Col span={4}></Col>
         <Col span={8}>
-          <h2>Product Details</h2>
-          <ProductDetails selectedProduct={selectedItem} />
+          <div>
+            <h2>Product Details</h2>
+            <ProductDetails
+              selectedProduct={selectedItem}
+              onSaveProduct={onSaveProduct}
+            />
+          </div>
         </Col>
       </Row>
     </>

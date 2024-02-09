@@ -57,7 +57,7 @@ export const ProductList = (props: ProductListProps) => {
   ];
   return (
     <>
-      <Table columns={columns} dataSource={products} />
+      <Table columns={columns} dataSource={products} rowKey={(p) => p.id} />
     </>
   );
 };
