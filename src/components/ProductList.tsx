@@ -5,7 +5,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 type ProductListProps = {
   products: Product[];
   onSelectedItem: (item: Product) => void;
-  onProductDeleted: (item: Product) => void;
+  onProductDeleted: (item: number) => void;
 };
 
 export const ProductList = (props: ProductListProps) => {
@@ -38,7 +38,7 @@ export const ProductList = (props: ProductListProps) => {
             <Popconfirm
               title="Delete the product"
               description="Are you sure to delete this product?"
-              onConfirm={() => onProductDeleted(product)}
+              onConfirm={() => onProductDeleted(product.id)}
               okText="Yes"
               cancelText="No"
             >

@@ -27,11 +27,11 @@ export const ProductView = () => {
     setSelectedItem(item);
   };
 
-  const onProductDeleted = (item: Product) => {
+  const onProductDeleted = (productId: number) => {
     setProducts((products) => {
-      return products.filter((p) => p.id !== item.id);
+      return products.filter((p) => p.id !== productId);
     });
-    message.success(`Product was deleted sucess: ${item.name}`);
+    message.success(`Product was deleted success: ${productId}`);
   };
 
   const onSaveProduct = (item: Product) => {
