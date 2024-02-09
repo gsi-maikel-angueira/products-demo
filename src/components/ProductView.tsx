@@ -35,11 +35,10 @@ export const ProductView = () => {
   };
 
   const onSaveProduct = (item: Product) => {
-    const isNew = selectedItem.id === 0;
+    const isNew = item.id === 0;
     if (isNew) {
-      const maxId = Math.max(...products.map((p) => p.id), 0);
-      item.id = maxId + 1;
-      setProducts((products) => [...products, item]);
+      const lastId = Math.max(...products.map((p) => p.id), 0);
+      setProducts((products) => [...products, { ...item, id: lastId + 1 }]);
     } else {
       setProducts((products) => {
         return products.map((p) => {
@@ -50,7 +49,8 @@ export const ProductView = () => {
         });
       });
     }
-    message.success(`Product saved success: ${item.name}`);
+    newProduct();
+    message.success(`Product was saved success: ${item.name}`);
   };
 
   const newProduct = () => {
@@ -78,13 +78,11 @@ export const ProductView = () => {
         </Col>
         <Col span={4}></Col>
         <Col span={8}>
-          <div>
-            <h2>Product Details</h2>
-            <ProductDetails
-              selectedProduct={selectedItem}
-              onSaveProduct={onSaveProduct}
-            />
-          </div>
+          <h2>Product Details</h2>
+          <ProductDetails
+            selectedProduct={selectedItem}
+            onSaveProduct={onSaveProduct}
+          />
         </Col>
       </Row>
     </>

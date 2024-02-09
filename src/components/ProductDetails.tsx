@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Product } from "../services/ProductService";
 import { Button, Form, Input, InputNumber, Space } from "antd";
 
@@ -8,12 +8,12 @@ type ProductDetailProps = {
 };
 
 const layout = {
-  labelCol: { span: 8 },
+  labelCol: { span: 3 },
   wrapperCol: { span: 16 },
 };
 
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  wrapperCol: { offset: 3, span: 16 },
 };
 
 export const ProductDetails = (props: ProductDetailProps) => {
@@ -22,7 +22,7 @@ export const ProductDetails = (props: ProductDetailProps) => {
 
   const onFinish = (savedProduct: Product) => {
     console.log(savedProduct);
-    onSaveProduct(savedProduct);
+    onSaveProduct({ ...savedProduct, id: selectedProduct.id });
     form.resetFields();
   };
 

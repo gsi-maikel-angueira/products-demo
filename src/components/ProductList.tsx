@@ -1,7 +1,6 @@
-import React from "react";
 import { Product } from "../services/ProductService";
 import { Button, Popconfirm, Space, Table, TableProps } from "antd";
-import { DeleteFilled, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 type ProductListProps = {
   products: Product[];
