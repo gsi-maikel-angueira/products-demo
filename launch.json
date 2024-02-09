@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:4000",  // Use 4000 if using Vite plugin, or 3000 if running with yarn/npm/vite
+      "webRoot": "${workspaceFolder}/src"  // Adapt this path based on your project structure
+    }
+  ]
+}
