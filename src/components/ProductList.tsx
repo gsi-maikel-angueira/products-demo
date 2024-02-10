@@ -1,15 +1,15 @@
 import { Product } from "../services/ProductService";
-import { Button, Popconfirm, Space, Table, TableProps } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, Flex, Popconfirm, Space, Table, TableProps } from "antd";
+import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 type ProductListProps = {
   products: Product[];
-  onSelectedItem: (item: Product) => void;
-  onProductDeleted: (item: number) => void;
+  onProductDeleted: (item: string) => void;
 };
 
 export const ProductList = (props: ProductListProps) => {
-  const { products, onSelectedItem, onProductDeleted } = props;
+  const { products, onProductDeleted } = props;
 
   const columns: TableProps<Product>["columns"] = [
     {
@@ -33,7 +33,9 @@ export const ProductList = (props: ProductListProps) => {
       render: (_, product) => {
         return (
           <Space size="middle">
-            <EditOutlined onClick={() => onSelectedItem(product)} />
+            <Link to={`/product/${product.id}/edit`}>
+              <EditOutlined />
+            </Link>
 
             <Popconfirm
               title="Delete the product"
@@ -57,6 +59,13 @@ export const ProductList = (props: ProductListProps) => {
   return (
     <>
       <Table columns={columns} dataSource={products} rowKey={(p) => p.id} />
+      <Flex justify="flex-start">
+        <Link to={"product/create"}>
+          <Button type="primary" icon={<PlusOutlined />} size="large">
+            New Product
+          </Button>
+        </Link>
+      </Flex>
     </>
   );
 };

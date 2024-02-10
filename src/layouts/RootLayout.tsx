@@ -1,13 +1,9 @@
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Outlet } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
 
-const items = new Array(2).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
-
-const App = () => {
+const RootLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -20,15 +16,15 @@ const App = () => {
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["2"]}
-          items={items}
+          items={[
+            { key: 1, label: "Home" },
+            { key: 2, label: "Products" },
+            { key: 3, label: "About us" },
+          ]}
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
       <Content style={{ padding: "0 48px" }}>
-        <Breadcrumb
-          style={{ margin: "16px 0" }}
-          items={[{ title: "Home" }, { title: "List" }, { title: "Products" }]}
-        />
         <div
           style={{
             background: colorBgContainer,
@@ -36,7 +32,9 @@ const App = () => {
             padding: 24,
             borderRadius: borderRadiusLG,
           }}
-        ></div>
+        >
+          <Outlet />
+        </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
         ©{new Date().getFullYear()}
@@ -45,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default RootLayout;

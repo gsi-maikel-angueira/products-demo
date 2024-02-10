@@ -23,7 +23,6 @@ export const ProductDetails = (props: ProductDetailProps) => {
   const onFinish = (savedProduct: Product) => {
     console.log(savedProduct);
     onSaveProduct({ ...savedProduct, id: selectedProduct.id });
-    form.resetFields();
   };
 
   const onReset = () => {
