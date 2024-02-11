@@ -33,7 +33,7 @@ export const ProductList = (props: ProductListProps) => {
       render: (_, product) => {
         return (
           <Space size="middle">
-            <Link to={`/product/${product.id}/edit`}>
+            <Link to={`products/${product.id}/edit`}>
               <EditOutlined />
             </Link>
 

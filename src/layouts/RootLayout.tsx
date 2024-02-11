@@ -22,7 +22,7 @@ const RootLayout = () => {
             <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key={2}>
-            <Link to="/product/create">Product</Link>
+            <Link to="products/new">Product</Link>
           </Menu.Item>
         </Menu>
       </Header>

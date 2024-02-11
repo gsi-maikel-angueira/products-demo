@@ -20,11 +20,11 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "product/:productId/edit",
+        path: "products/:productId/edit",
         element: <ProductEditPage />,
       },
       {
-        path: "product/create",
+        path: "products/new",
         element: <NewProductPage />,
       },
     ],
