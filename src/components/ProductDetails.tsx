@@ -9,7 +9,7 @@ type ProductDetailProps = {
 
 const layout = {
   labelCol: { span: 3 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 6 },
 };
 
 const tailLayout = {

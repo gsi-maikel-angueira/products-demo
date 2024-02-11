@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { EmptyProduct, Product, addProduct } from "../services/ProductService";
 import { ProductDetails } from "../components/ProductDetails";
 import { message } from "antd";

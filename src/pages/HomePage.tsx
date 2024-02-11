@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Product, getProducts } from "../services/ProductService";
+import { useEffect, useState } from "react";
+import {
+  Product,
+  deleteProduct,
+  getProducts,
+} from "../services/ProductService";
 import { ProductList } from "../components/ProductList";
 import { message } from "antd";
 
-function ProductListPage() {
+function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -13,10 +17,9 @@ function ProductListPage() {
     })();
   }, []);
 
-  const onProductDeleted = (productId: string) => {
-    setProducts((products) => {
-      return products.filter((p) => p.id !== productId);
-    });
+  const onProductDeleted = async (productId: string) => {
+    const items = await deleteProduct(productId);
+    setProducts([...items]);
     message.success(`Product was deleted success: ${productId}`);
   };
 
@@ -25,4 +28,4 @@ function ProductListPage() {
   );
 }
 
-export default ProductListPage;
+export default HomePage;

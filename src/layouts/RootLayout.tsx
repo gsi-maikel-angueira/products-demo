@@ -1,5 +1,5 @@
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { Outlet } from "react-router-dom";
+import { Layout, Menu, theme } from "antd";
+import { Link, Outlet } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
 
@@ -16,13 +16,15 @@ const RootLayout = () => {
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["2"]}
-          items={[
-            { key: 1, label: "Home" },
-            { key: 2, label: "Products" },
-            { key: 3, label: "About us" },
-          ]}
           style={{ flex: 1, minWidth: 0 }}
-        />
+        >
+          <Menu.Item key={1}>
+            <Link to="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key={2}>
+            <Link to="/product/create">Product</Link>
+          </Menu.Item>
+        </Menu>
       </Header>
       <Content style={{ padding: "0 48px" }}>
         <div

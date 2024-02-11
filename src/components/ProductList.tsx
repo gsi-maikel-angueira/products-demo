@@ -1,6 +1,6 @@
 import { Product } from "../services/ProductService";
-import { Button, Flex, Popconfirm, Space, Table, TableProps } from "antd";
-import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Popconfirm, Space, Table, TableProps } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 type ProductListProps = {
@@ -56,16 +56,5 @@ export const ProductList = (props: ProductListProps) => {
       },
     },
   ];
-  return (
-    <>
-      <Table columns={columns} dataSource={products} rowKey={(p) => p.id} />
-      <Flex justify="flex-start">
-        <Link to={"product/create"}>
-          <Button type="primary" icon={<PlusOutlined />} size="large">
-            New Product
-          </Button>
-        </Link>
-      </Flex>
-    </>
-  );
+  return <Table columns={columns} dataSource={products} rowKey={(p) => p.id} />;
 };

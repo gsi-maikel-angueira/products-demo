@@ -7,7 +7,7 @@ export type Product = {
   unit: string;
 };
 
-export const uuid = () => Math.random().toString(36).substring(2, 9);
+export const UUID = () => Math.random().toString(36).substring(2, 9);
 
 const PRODUCT_KEY = "PRODUCTS";
 
@@ -51,7 +51,7 @@ export async function getProductById(productId: string) {
 
 export async function addProduct(addProduct: Product) {
   const products = await getProducts();
-  const newProducts = [...products, { ...addProduct, id: uuid() }];
+  const newProducts = [...products, { ...addProduct, id: UUID() }];
   saveProducts(newProducts);
 }
 
@@ -70,19 +70,20 @@ export async function updateProduct(
   saveProducts(newProducts);
 }
 
-export async function deleteProduct(productId: string): Promise<void> {
+export async function deleteProduct(productId: string) {
   const products = await getProducts();
   let newProducts = products.filter((p) => p.id !== productId);
   saveProducts(newProducts);
+  return newProducts;
 }
 
-export function resetTodos(): void {
+export function resetProducts(): void {
   localStorage.removeItem(PRODUCT_KEY);
   initializeProducts();
 }
 
 export const EmptyProduct: Product = {
-  id: uuid(),
+  id: UUID(),
   name: "",
   unit: "",
   price: 0.0,

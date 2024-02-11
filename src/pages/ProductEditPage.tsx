@@ -10,13 +10,13 @@ import { ProductDetails } from "../components/ProductDetails";
 import { message } from "antd";
 
 function ProductEditPage() {
-  let useParam = useParams();
-  const productId = useParam["id"] as string;
+  let params = useParams();
+  const { productId } = params;
   const [editProduct, setEditProduct] = useState<Product>(EmptyProduct);
 
   useEffect(() => {
     (async () => {
-      const product = (await getProductById(productId)) as Product;
+      const product = (await getProductById(productId!)) as Product;
       setEditProduct(product);
     })();
   }, []);

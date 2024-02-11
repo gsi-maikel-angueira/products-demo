@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import ProductListPage from "./pages/ProductListPage";
+import HomePage from "./pages/HomePage";
 import ProductEditPage from "./pages/ProductEditPage";
 import NewProductPage from "./pages/NewProductPage";
 
@@ -13,14 +13,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <ProductListPage />,
+        element: <HomePage />,
       },
       {
         path: "products",
-        element: <ProductListPage />,
+        element: <HomePage />,
       },
       {
-        path: "product/:id/edit",
+        path: "product/:productId/edit",
         element: <ProductEditPage />,
       },
       {
