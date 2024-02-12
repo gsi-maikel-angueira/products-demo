@@ -1,11 +1,11 @@
-const once = <FNType extends (...args: any[]) => any>(fn: FNType) => {
+const once = <Fn extends (...args: any[]) => any>(fn: Fn) => {
   let done = false;
-  return ((...args: Parameters<FNType>) => {
+  return ((...args: Parameters<Fn>) => {
     if (!done) {
       done = true;
       return fn(...args);
     }
-  }) as FNType;
+  }) as Fn;
 };
 
 export default once;

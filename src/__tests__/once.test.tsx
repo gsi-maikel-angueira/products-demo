@@ -6,7 +6,7 @@ describe("Test Once function", () => {
     expect(true).toBe(true);
   });
 
-  test("without once", () => {
+  test("without 'once', a function runs 3 times", () => {
     const myFn = jest.fn();
     myFn();
     myFn();
