@@ -51,8 +51,10 @@ export async function getProductById(productId: string) {
 
 export async function addProduct(addProduct: Product) {
   const products = await getProducts();
-  const newProducts = [...products, { ...addProduct, id: UUID() }];
+  const newProduct = { ...addProduct, id: UUID() };
+  const newProducts = [...products, newProduct];
   saveProducts(newProducts);
+  return newProduct;
 }
 
 export async function updateProduct(
