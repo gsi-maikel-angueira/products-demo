@@ -4,15 +4,17 @@ import {
   EmptyProduct,
   Product,
   getProductById,
-  updateProduct,
 } from "../services/ProductService";
 import { ProductDetails } from "../components/ProductDetails";
 import { message } from "antd";
+import { useAppDispatch } from "../state/ProductStore";
+import { updateProductAsync } from "../state/ProductSlice";
 
 function ProductEditPage() {
   let params = useParams();
   const { productId } = params;
   const [editProduct, setEditProduct] = useState<Product>(EmptyProduct);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
@@ -22,7 +24,7 @@ function ProductEditPage() {
   }, []);
 
   function onSaveProduct(p: Product): void {
-    updateProduct(editProduct!.id, p);
+    dispatch(updateProductAsync(p));
     message.success(`Product was updated success: ${p.name}`);
   }
 

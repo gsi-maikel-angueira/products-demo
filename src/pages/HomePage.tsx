@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
-import {
-  Product,
-  deleteProduct,
-  getProducts,
-} from "../services/ProductService";
 import { ProductList } from "../components/ProductList";
 import { message } from "antd";
+import { useAppDispatch, useAppSelector } from "../state/ProductStore";
+import { deleteProductAsync } from "../state/ProductSlice";
 
 function HomePage() {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const products = await getProducts();
-      setProducts(products);
-    })();
-  }, []);
+  const fetchProducts = useAppSelector((state) => state.productsState.products);
+  const dispatch = useAppDispatch();
 
   const onProductDeleted = async (productId: string) => {
-    const items = await deleteProduct(productId);
-    setProducts([...items]);
+    dispatch(deleteProductAsync(productId));
     message.success(`Product was deleted success: ${productId}`);
   };
 
   return (
-    <ProductList products={products} onProductDeleted={onProductDeleted} />
+    <ProductList products={fetchProducts} onProductDeleted={onProductDeleted} />
   );
 }
 

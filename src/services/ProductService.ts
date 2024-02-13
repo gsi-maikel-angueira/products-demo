@@ -51,25 +51,23 @@ export async function getProductById(productId: string) {
 
 export async function addProduct(addProduct: Product) {
   const products = await getProducts();
-  const newProduct = { ...addProduct, id: UUID() };
+  const newProduct = { ...addProduct };
   const newProducts = [...products, newProduct];
   saveProducts(newProducts);
   return newProduct;
 }
 
-export async function updateProduct(
-  productId: string,
-  updatedProduct: Product
-) {
-  const products = await getProducts();
-  const newProducts = products.map((p) => {
+export async function updateProduct(productId: string, product: Product) {
+  const fetchProducts = await getProducts();
+  const newProducts = fetchProducts.map((p) => {
     if (p.id == productId) {
-      return { ...updatedProduct, id: productId };
+      return { ...product, id: productId };
     }
 
     return p;
   });
   saveProducts(newProducts);
+  return { ...product };
 }
 
 export async function deleteProduct(productId: string) {
