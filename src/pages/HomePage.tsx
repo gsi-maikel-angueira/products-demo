@@ -1,25 +1,20 @@
-import { useEffect, useState } from "react";
-import {
-  Product,
-  deleteProduct,
-  getProducts,
-} from "../services/ProductService";
+import { useEffect } from "react";
 import { ProductList } from "../components/ProductList";
 import { message } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductAsync, fetchProductsAsync } from "../redux/actions";
+import { AppState } from "../redux";
 
 function HomePage() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const dispatch = useDispatch();
+  const { products } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    (async () => {
-      const products = await getProducts();
-      setProducts(products);
-    })();
+    dispatch(fetchProductsAsync());
   }, []);
 
   const onProductDeleted = async (productId: string) => {
-    const items = await deleteProduct(productId);
-    setProducts([...items]);
+    dispatch(deleteProductAsync(productId));
     message.success(`Product was deleted success: ${productId}`);
   };
 

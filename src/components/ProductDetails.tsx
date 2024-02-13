@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Product } from "../services/ProductService";
+import { Product } from "../services/productApi";
 import { Button, Form, Input, InputNumber, Space } from "antd";
 
 type ProductDetailProps = {

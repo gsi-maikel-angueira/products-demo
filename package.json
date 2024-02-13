@@ -17,7 +17,11 @@
     "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.0"
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^6.22.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
@@ -26,6 +30,7 @@
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "@types/react-redux": "^7.1.33",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",

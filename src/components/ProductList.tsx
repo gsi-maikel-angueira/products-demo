@@ -1,4 +1,4 @@
-import { Product } from "../services/ProductService";
+import { Product } from "../services/productApi";
 import { Button, Popconfirm, Space, Table, TableProps } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
