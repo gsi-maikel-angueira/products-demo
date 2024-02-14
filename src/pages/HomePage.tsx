@@ -3,7 +3,7 @@ import { ProductList } from "../components/ProductList";
 import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductAsync, fetchProductsAsync } from "../redux/actions";
-import { AppState } from "../redux/rootReducer";
+import { AppState } from "../redux/reducers";
 
 function HomePage() {
   const dispatch = useDispatch();
