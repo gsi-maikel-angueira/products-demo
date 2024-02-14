@@ -1,6 +1,11 @@
 import { Product } from "../../services/productApi";
-import { ADD_PRODUCT, DELETE_PRODUCT, UPDATE_PRODUCT } from "../action-types";
-import { ProductAction, ProductState } from "../types";
+import {
+  ADD_PRODUCT,
+  DELETE_PRODUCT,
+  UPDATE_PRODUCT,
+  FETCH_PRODUCTS,
+} from "../action-types/actionNames";
+import { ProductAction, ProductState } from "../action-types";
 
 export const initialState: ProductState = {
   products: [],
@@ -11,7 +16,7 @@ const productReducer = (
   action: ProductAction
 ) => {
   switch (action.type) {
-    case "FETCH_PRODUCTS":
+    case FETCH_PRODUCTS:
       return { ...state, products: [...action.payload] };
     case ADD_PRODUCT:
       return { ...state, products: state.products.concat(action.payload) };

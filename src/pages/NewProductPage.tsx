@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { EmptyProduct, Product, addProduct } from "../services/productApi";
+import { EmptyProduct, Product } from "../services/productApi";
 import { ProductDetails } from "../components/ProductDetails";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";

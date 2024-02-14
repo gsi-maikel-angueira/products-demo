@@ -10,11 +10,8 @@ import {
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
   FETCH_PRODUCTS,
-} from "../action-types";
-import { ThunkDispatch } from "redux-thunk";
-import { ProductAction, ProductState } from "../types";
-
-export type DispatchType = ThunkDispatch<ProductState, void, ProductAction>;
+} from "../action-types/actionNames";
+import { DispatchType, ProductAction } from "../action-types";
 
 export function fetchProductsAsync() {
   return async (dispatch: DispatchType) => {
